@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <div className="logo">
-        <a href="#">ShopMate</a>
+        <a href="#">SportsWorld</a>
       </div>
       <nav className="nav-links">
         <a href="#">Home</a>
@@ -21,7 +21,7 @@ const Navbar = () => {
       </nav>
       <div className="search-box">
         <input type="text" placeholder="Search products..." />
-        <button>🔍</button>
+        <button><i class="fi fi-br-search"></i></button>
       </div>
       <button className="menu-toggle" onClick={toggleMenu}>
         ☰
