@@ -6,6 +6,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <p>Hi</p>
     </>
   )
 }
