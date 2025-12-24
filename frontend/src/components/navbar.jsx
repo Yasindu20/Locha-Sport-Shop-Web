@@ -1,43 +1,97 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../css/navbar.css";
-import Logo from "../assets/logo.svg"
+import Logo from "../assets/logo.svg";
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const toggleMenu = () => {
-    const menu = document.querySelector(".mobile-menu");
-    menu.classList.toggle("open");
+    setMenuOpen(!menuOpen);
   };
 
   return (
-    <header className="navbar">
-      <div className="logo">
-        <a href="#"><img src={Logo} /></a>
-      </div>
-      <nav className="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <a href="#">Categories</a>
-        <a href="#">Deals</a>
-        <a href="#">Contact</a>
-      </nav>
-      <div className="search-box">
-        <input type="text" placeholder="Search products..." />
-        <button><i class="fi fi-br-search"></i></button>
-      </div>
-      <button className="menu-toggle" onClick={toggleMenu}>
-        ☰
-      </button>
-      <div className="mobile-menu">
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <a href="#">Categories</a>
-        <a href="#">Deals</a>
-        <a href="#">Contact</a>
+    <>
+      <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
+        <div className="logo">
+          <a href="#">
+            <img src={Logo} alt="Logo" />
+          </a>
+        </div>
+
+        <div className="nav-center">
+          <nav className="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Categories</a>
+            <a href="#">Deals</a>
+            <a href="#">Contact</a>
+          </nav>
+        </div>
+
+        <div className="nav-right">
+          <div className="search-box">
+            <input type="text" placeholder="Search products..." />
+            <button>
+              <i className="fi fi-br-search"></i>
+            </button>
+          </div>
+          <button
+            className="menu-toggle"
+            onClick={toggleMenu}
+            aria-label="Menu"
+          >
+            <i className="fi fi-br-menu-burger"></i>
+          </button>
+        </div>
+      </header>
+
+      <div
+        className={`overlay ${menuOpen ? "active" : ""}`}
+        onClick={toggleMenu}
+      ></div>
+
+      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
+        <div className="mobile-menu-header">
+          <h3>Menu</h3>
+          <button
+            className="close-btn"
+            onClick={toggleMenu}
+            aria-label="Close menu"
+          >
+            <i className="fi fi-br-cross"></i>
+          </button>
+        </div>
+
+        <a href="#" onClick={toggleMenu}>
+          <i className="fi fi-br-home"></i> Home
+        </a>
+        <a href="#" onClick={toggleMenu}>
+          <i className="fi fi-br-shopping-bag"></i> Shop
+        </a>
+        <a href="#" onClick={toggleMenu}>
+          <i className="fi fi-br-apps"></i> Categories
+        </a>
+        <a href="#" onClick={toggleMenu}>
+          <i className="fi fi-br-badge-percent"></i> Deals
+        </a>
+        <a href="#" onClick={toggleMenu}>
+          <i className="fi fi-br-envelope"></i> Contact
+        </a>
+
         <div className="mobile-search">
           <input type="text" placeholder="Search products..." />
         </div>
       </div>
-    </header>
+    </>
   );
 };
 
