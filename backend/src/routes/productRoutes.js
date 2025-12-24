@@ -1,4 +1,4 @@
-import express from 'exporess'
+import express from 'express';
 import Product from '../models/Products.js';
 
 const router = express.Router();
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 
 router.get('/featured', async (req, res) => {
     try {
-        const products = await Products.find({ isFeatured: true });
+        const products = await Product.find({ isFeatured: true });
         res.json(products);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -32,9 +32,9 @@ router.get('/category/:category', async (req, res) => {
 
 router.get('/:id', async (req, res ) => {
     try {
-        const products = await Product.findById(req.params.id);
-        if (products) {
-            res.json(products);
+        const product = await Product.findById(req.params.id);
+        if (product) {
+            res.json(product);
         } else {
             res.status(404).json({ message: 'Product Not Found' });
         }
@@ -52,8 +52,8 @@ router.post('/', async (req, res) => {
             category: req.body.category,
             image: req.body.image,
             stock: req.body.stock,
-            isFeatured: req.body.isFeatured,
-            badge: req.body.badge,
+            isFeatured: req.body.isFeatured || false,
+            badge: req.body.badge || 'new',
             sku: req.body.sku
         })
 
