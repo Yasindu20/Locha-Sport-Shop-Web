@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/navbar.css";
+import Logo from "../assets/logo.svg"
 
 const Navbar = () => {
   const toggleMenu = () => {
@@ -10,7 +11,7 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <div className="logo">
-        <a href="#">SportsWorld</a>
+        <a href="#"><img src={Logo} /></a>
       </div>
       <nav className="nav-links">
         <a href="#">Home</a>
