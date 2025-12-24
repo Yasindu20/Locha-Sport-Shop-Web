@@ -1,1 +1,9 @@
-<p>This is Home Page</p>
+import Hero from "../components/hero";
+
+export const Home = () => {
+  return (
+    <>
+      <Hero />
+    </>
+  )
+}
