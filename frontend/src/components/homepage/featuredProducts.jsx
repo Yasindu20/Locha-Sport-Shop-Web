@@ -1,5 +1,5 @@
 import React from "react";
-import '../../css/homepage/featuredProducts.css';
+import '../../css/homepage/featured.css';
 
 const FeaturedProducts = () => {
     const renderStars = (rating) => {
@@ -13,7 +13,7 @@ const FeaturedProducts = () => {
                 <i key={`full-${i}`} className="fi fi-br-star-filled"></i>
             );
         }
-        
+
         //half stars
         if (hasHalfStar) {
             stars.push(
@@ -68,7 +68,7 @@ const FeaturedProducts = () => {
                             {/*product image*/}
                             <div className="product-image">
                                 <img src={product.image} alt={product.name} />
-                                
+
                                 {/*Quick Action Buttons*/}
                                 <div className="product-actions">
                                     <button className="action-btn" aria-label="Add to Wishlist">
@@ -81,7 +81,7 @@ const FeaturedProducts = () => {
                             </div>
 
                             {/*product info*/}
-                            
+
                         </div>
                     ))}
                 </div>
