@@ -1,4 +1,4 @@
-import "../../css/homepage/featured.css";
+import "../../css/homepage/promo.css";
 import React, { useState, useEffect } from "react";
 
 const SLIDE_DURATION = 5000;
