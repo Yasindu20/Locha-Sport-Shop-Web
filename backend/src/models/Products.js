@@ -7,6 +7,11 @@ const productSchema = new mongoose.Schema({
         trim: true,
         minLength: [3, 'Name must be at Least 3 characters Long']
     },
+    type: {
+        type: String,
+        required: [true, 'Please enter product item'],
+        trim: true,
+    },
     price: {
         type: Number,
         required: [true, 'Please enter product Price'],
@@ -53,6 +58,10 @@ const productSchema = new mongoose.Schema({
     brand: {
         type: String,
         default: false,
+    },
+    brandLogo: {
+        type: String,
+        default: null,
     },
     sku: {
         type: String,
