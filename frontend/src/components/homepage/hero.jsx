@@ -14,7 +14,7 @@ const Hero = () => {
 
         {/*main headline*/}
         <h1 className='hero-title'>
-          Unleash Your 
+          Unleash Your
           <span className='highlight'>Athletic Potential</span>
         </h1>
 
@@ -27,11 +27,11 @@ const Hero = () => {
         {/*Call-to-actions buttons*/}
         <div className='hero-buttons'>
           <button className='btn-primary'>
-            Shop Now 
+            Shop Now
             <i className='fi fi-br-arrow-right'></i>
           </button>
           <button className='btn-secondary'>
-            Explore Categories 
+            Explore Categories
           </button>
         </div>
 
@@ -45,7 +45,7 @@ const Hero = () => {
             <h3>500+</h3>
             <p>Premium Products</p>
           </div>
-          <div className='stat-items'>
+          <div className='stat-item'>
             <h3>50+</h3>
             <p>Sport Categories</p>
           </div>
