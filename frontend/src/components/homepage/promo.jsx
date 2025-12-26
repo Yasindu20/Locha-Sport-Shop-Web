@@ -38,7 +38,6 @@ const Promo = () => {
   ];
 
   useEffect(() => {
-    setProgress(0);
     const start = Date.now();
 
     const progressInterval = setInterval(() => {
@@ -47,6 +46,7 @@ const Promo = () => {
     }, 50);
 
     const slideTimeout = setTimeout(() => {
+      setProgress(0); // ✅ reset at the moment slide changes
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, SLIDE_DURATION);
 
@@ -56,7 +56,9 @@ const Promo = () => {
     };
   }, [currentSlide, slides.length]);
 
+  // ✅ Reset progress on user action (NOT in effect)
   const goToSlide = (index) => {
+    setProgress(0);
     setCurrentSlide(index);
   };
 
