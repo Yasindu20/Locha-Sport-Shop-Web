@@ -1,9 +1,9 @@
 import React from "react";
-import '../../css/homepage/featured.css';
+import '../../css/homepage/featuredProducts.css';
 
 const FeaturedProducts = () => {
     const products = [
-        
+
     ]
 
     const formatPrice = (price) => {
