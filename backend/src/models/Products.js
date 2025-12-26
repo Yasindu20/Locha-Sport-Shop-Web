@@ -50,13 +50,17 @@ const productSchema = new mongoose.Schema({
         enum: ['new', 'sale', 'bestselling', 'limited'],
         default: 'new'
     },
+    brand: {
+        type: String,
+        default: false,
+    },
     sku: {
         type: String,
         unique: true,
         required: true,
     },
 }, {
-    timestamps: true,  
+    timestamps: true,
 });
 
 const Product = mongoose.model('Product', productSchema);
