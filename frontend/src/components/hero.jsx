@@ -1,11 +1,11 @@
 import "../css/hero.css";
-
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const SLIDE_DURATION = 5000;
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   const slides = [
     {
@@ -38,92 +38,78 @@ const Hero = () => {
   ];
 
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    setProgress(0);
+    const start = Date.now();
 
-    const interval = setInterval(() => {
+    const progressInterval = setInterval(() => {
+      const elapsed = Date.now() - start;
+      setProgress(Math.min((elapsed / SLIDE_DURATION) * 100, 100));
+    }, 50);
+
+    const slideTimeout = setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, SLIDE_DURATION);
 
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, slides.length]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-    setIsAutoPlaying(false);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    setIsAutoPlaying(false);
-  };
+    return () => {
+      clearInterval(progressInterval);
+      clearTimeout(slideTimeout);
+    };
+  }, [currentSlide, slides.length]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
-    setIsAutoPlaying(false);
   };
 
   return (
-    <>
-      <div className="hero-slider">
-        <div
-          className="slides-container"
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-        >
-          {slides.map((slide) => (
-            <div key={slide.id} className="slide">
-              <picture>
-                <source
-                  media="(orientation: landscape)"
-                  srcSet={slide.landscapeImage}
-                />
-                <source
-                  media="(orientation: portrait)"
-                  srcSet={slide.portraitImage}
-                />
-                <img src={slide.landscapeImage} alt={slide.title} />
-              </picture>
+    <div className="hero-slider">
+      <div
+        className="slides-container"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+      >
+        {slides.map((slide) => (
+          <div key={slide.id} className="slide">
+            <picture>
+              <source
+                media="(orientation: landscape)"
+                srcSet={slide.landscapeImage}
+              />
+              <source
+                media="(orientation: portrait)"
+                srcSet={slide.portraitImage}
+              />
+              <img src={slide.landscapeImage} alt={slide.title} />
+            </picture>
 
-              <div className="slide-overlay" />
+            <div className="slide-overlay" />
 
-              <div className="slide-content">
-                <div className="content-wrapper">
-                  <h1 className="slide-title">{slide.title}</h1>
-                  <p className="slide-subtitle">{slide.subtitle}</p>
-                  <button className="slide-button">Explore Now</button>
-                </div>
+            <div className="slide-content">
+              <div className="content-wrapper">
+                <h1 className="slide-title">{slide.title}</h1>
+                <p className="slide-subtitle">{slide.subtitle}</p>
+                <button className="slide-button">Explore Now</button>
               </div>
             </div>
-          ))}
-        </div>
-
-        <button
-          onClick={prevSlide}
-          className="nav-button nav-prev"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft size={32} />
-        </button>
-
-        <button
-          onClick={nextSlide}
-          className="nav-button nav-next"
-          aria-label="Next slide"
-        >
-          <ChevronRight size={32} />
-        </button>
-
-        <div className="dot-indicators">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`dot ${index === currentSlide ? "active" : ""}`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </>
+
+      {/* Progress Timer */}
+      <div className="slide-timer">
+        <div className="slide-timer-bar" style={{ width: `${progress}%` }} />
+      </div>
+
+      {/* Dots */}
+      <div className="dot-indicators">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`dot ${index === currentSlide ? "active" : ""}`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

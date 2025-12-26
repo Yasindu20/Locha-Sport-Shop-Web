@@ -17,16 +17,14 @@
   position: relative;
 }
 
-.slide picture {
+.slide picture,
+.slide img {
   width: 100%;
   height: 100%;
 }
 
 .slide img {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
 .slide-overlay {
@@ -60,14 +58,12 @@
   font-weight: bold;
   color: white;
   margin-bottom: 1.5rem;
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .slide-subtitle {
   font-size: 1.25rem;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 2rem;
-  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .slide-button {
@@ -76,59 +72,37 @@
   padding: 0.875rem 2rem;
   border-radius: 9999px;
   font-weight: 600;
-  font-size: 1rem;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
 }
 
 .slide-button:hover {
-  background: #f3f4f6;
   transform: scale(1.05);
 }
 
-.nav-button {
+/* Progress Timer */
+.slide-timer {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
   background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  color: white;
-  padding: 0.75rem;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
   z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.nav-button:hover {
-  background: rgba(255, 255, 255, 0.4);
+.slide-timer-bar {
+  height: 100%;
+  background: white;
+  width: 0%;
+  transition: width 0.05s linear;
 }
 
-.nav-button svg {
-  transition: transform 0.3s ease;
-}
-
-.nav-button:hover svg {
-  transform: scale(1.1);
-}
-
-.nav-prev {
-  left: 2rem;
-}
-
-.nav-next {
-  right: 2rem;
-}
-
+/* Dots */
 .dot-indicators {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -137,22 +111,28 @@
 }
 
 .dot {
-  background: rgba(255, 255, 255, 0.5);
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.5);
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.dot:hover {
-  background: rgba(255, 255, 255, 0.75);
+  transition: 0.3s;
 }
 
 .dot.active {
   background: white;
   width: 3rem;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .slide-title {
+    font-size: 4rem;
+  }
+  .slide-subtitle {
+    font-size: 1.75rem;
+  }
 }
 
 @keyframes fadeIn {
@@ -163,79 +143,5 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* Tablet */
-@media (min-width: 640px) {
-  .slide-title {
-    font-size: 3rem;
-  }
-
-  .slide-subtitle {
-    font-size: 1.5rem;
-  }
-
-  .nav-button {
-    padding: 0.875rem;
-  }
-
-  .dot {
-    width: 0.75rem;
-    height: 0.75rem;
-  }
-
-  .dot.active {
-    width: 3rem;
-    height: 0.75rem;
-  }
-}
-
-/* Desktop */
-@media (min-width: 768px) {
-  .slide-title {
-    font-size: 3.75rem;
-  }
-
-  .slide-subtitle {
-    font-size: 1.875rem;
-  }
-
-  .slide-button {
-    font-size: 1.125rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .slide-title {
-    font-size: 4.5rem;
-  }
-
-  .slide-subtitle {
-    font-size: 1.875rem;
-  }
-
-  .slide-content {
-    padding: 2rem;
-  }
-}
-
-/* Mobile */
-@media (max-width: 640px) {
-  .nav-prev {
-    left: 1rem;
-  }
-
-  .nav-next {
-    right: 1rem;
-  }
-
-  .dot-indicators {
-    bottom: 1.5rem;
-    gap: 0.5rem;
-  }
-
-  .slides-container {
-    transition: transform 0.5s ease-in-out;
   }
 }
