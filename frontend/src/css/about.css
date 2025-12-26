@@ -1,0 +1,222 @@
+/* ===============================
+   Global Styles
+================================ */
+.about-container {
+  font-family: "Poppins", sans-serif;
+  color: #222;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+p {
+  font-size: 1rem;
+  color: #555;
+}
+
+section {
+  padding: 4rem 1.5rem;
+}
+
+/* ===============================
+   Hero Section
+================================ */
+.about-hero {
+  height: 65vh;
+  background: url("https://images.unsplash.com/photo-1517649763962-0c623066013b")
+    center/cover no-repeat;
+  backdrop-filter: blur(20px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-hero .about-overlay {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 12px;
+  color: #fff;
+  max-width: 700px;
+}
+
+.about-hero h1 {
+  font-size: 2.8rem;
+  color: #fff;
+}
+
+.about-hero p {
+  font-size: 1.2rem;
+  color: #eee;
+}
+
+/* ===============================
+   About Content
+================================ */
+.about-content {
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.about-content h2 {
+  color: #111;
+  margin-bottom: 1.5rem;
+}
+
+.about-content p {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+/* ===============================
+   Mission & Vision
+================================ */
+.mission-vision {
+  background: #f8f9fb;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.mission-vision .card {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.mission-vision .card:hover {
+  transform: translateY(-6px);
+}
+
+.mission-vision h3 {
+  color: #e63946;
+}
+
+/* ===============================
+   Why Choose Us
+================================ */
+.why-choose-us {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.why-choose-us h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.why-choose-us ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 2rem;
+}
+
+.why-choose-us li {
+  background: #fff;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  font-size: 0.95rem;
+  position: relative;
+  padding-left: 2.2rem;
+}
+
+.why-choose-us li::before {
+  content: "✔";
+  position: absolute;
+  left: 0.9rem;
+  color: #2a9d8f;
+  font-weight: bold;
+}
+
+/* ===============================
+   Visit Us Section
+================================ */
+.visit-us {
+  background: linear-gradient(135deg, #1d3557, #0b2545);
+  color: #fff;
+  text-align: center;
+}
+
+.visit-us h2 {
+  color: #fff;
+}
+
+.visit-us p {
+  color: #ddd;
+  margin-bottom: 2rem;
+}
+
+.visit-details {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.visit-details span {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 1.2rem;
+  border-radius: 30px;
+  font-size: 0.9rem;
+}
+
+.visit-details i {
+  font-size: 1.1rem;
+}
+
+/* ===============================
+   Responsive Design
+================================ */
+@media (max-width: 992px) {
+  .mission-vision {
+    grid-template-columns: 1fr;
+  }
+
+  .why-choose-us ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    height: 55vh;
+  }
+
+  .about-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  section {
+    padding: 3rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-hero p {
+    font-size: 1rem;
+  }
+
+  .visit-details span {
+    font-size: 0.85rem;
+  }
+}
