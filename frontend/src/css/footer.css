@@ -212,29 +212,29 @@
   .footer-content {
     padding: 60px 20px 30px;
   }
-  
+
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
+
   .footer-col {
     text-align: center;
   }
-  
+
   .footer-logo {
     display: flex;
     justify-content: center;
   }
-  
+
   .social-links {
     justify-content: center;
   }
-  
+
   .footer-links {
     align-items: center;
   }
-  
+
   .footer-bottom-content {
     flex-direction: column;
     gap: 15px;
@@ -247,16 +247,16 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  
+
   .newsletter-form {
     flex-direction: column;
   }
-  
+
   .newsletter-form input,
   .newsletter-form button {
     width: 100%;
   }
-  
+
   .newsletter-form button {
     height: 50px;
     border-radius: 50px;
