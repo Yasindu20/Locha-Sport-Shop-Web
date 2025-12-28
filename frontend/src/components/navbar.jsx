@@ -30,7 +30,7 @@ const Navbar = () => {
         <div className="nav-center">
           <nav className="nav-links">
             <a href="/">Home</a>
-            <a href="#">Shop</a>
+            <a href="/shop">Shop</a>
             <a href="#">Categories</a>
             <a href="#">Deals</a>
             <a href="#">Contact</a>
