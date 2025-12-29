@@ -1,9 +1,16 @@
+:root {           /* Main text */
+  --neutral-light: #f8f9fb;   /* Light Gray */
+  --accent1-light: #e63946;   /* Lighter red for accents */
+  --visit-bg-start: #1d3557;
+  --visit-bg-end: #0b2545;
+}
+
 /* ===============================
    Global Styles
 ================================ */
 .about-container {
   font-family: "Poppins", sans-serif;
-  color: #222;
+  color: var(--primary);
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -15,7 +22,7 @@ h1, h2, h3 {
 
 p {
   font-size: 1rem;
-  color: #555;
+  color: var(--neutral);
 }
 
 section {
@@ -41,18 +48,18 @@ section {
   padding: 2.5rem;
   text-align: center;
   border-radius: 12px;
-  color: #fff;
+  color: var(--text);
   max-width: 700px;
 }
 
 .about-hero h1 {
   font-size: 2.8rem;
-  color: #fff;
+  color: var(--text);
 }
 
 .about-hero p {
   font-size: 1.2rem;
-  color: #eee;
+  color: rgba(var(--text-rgb), 0.9);
 }
 
 /* ===============================
@@ -65,7 +72,7 @@ section {
 }
 
 .about-content h2 {
-  color: #111;
+  color: var(--primary);
   margin-bottom: 1.5rem;
 }
 
@@ -78,7 +85,7 @@ section {
    Mission & Vision
 ================================ */
 .mission-vision {
-  background: #f8f9fb;
+  background: var(--neutral-light);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
@@ -87,10 +94,10 @@ section {
 }
 
 .mission-vision .card {
-  background: #fff;
+  background: var(--secondary);
   padding: 2.5rem;
   border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 25px rgba(var(--primary-rgb), 0.06);
   transition: transform 0.3s ease;
 }
 
@@ -99,7 +106,7 @@ section {
 }
 
 .mission-vision h3 {
-  color: #e63946;
+  color: var(--accent1-light);
 }
 
 /* ===============================
@@ -124,10 +131,10 @@ section {
 }
 
 .why-choose-us li {
-  background: #fff;
+  background: var(--secondary);
   padding: 1rem 1.2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 18px rgba(var(--primary-rgb), 0.05);
   font-size: 0.95rem;
   position: relative;
   padding-left: 2.2rem;
@@ -137,7 +144,7 @@ section {
   content: "✔";
   position: absolute;
   left: 0.9rem;
-  color: #2a9d8f;
+  color: var(--accent2);
   font-weight: bold;
 }
 
@@ -145,17 +152,17 @@ section {
    Visit Us Section
 ================================ */
 .visit-us {
-  background: linear-gradient(135deg, #1d3557, #0b2545);
-  color: #fff;
+  background: linear-gradient(135deg, var(--visit-bg-start), var(--visit-bg-end));
+  color: var(--text);
   text-align: center;
 }
 
 .visit-us h2 {
-  color: #fff;
+  color: var(--text);
 }
 
 .visit-us p {
-  color: #ddd;
+  color: rgba(var(--text-rgb), 0.8);
   margin-bottom: 2rem;
 }
 
@@ -170,7 +177,7 @@ section {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(var(--text-rgb), 0.1);
   padding: 0.8rem 1.2rem;
   border-radius: 30px;
   font-size: 0.9rem;
@@ -219,4 +226,12 @@ section {
   .visit-details span {
     font-size: 0.85rem;
   }
+}
+
+/* ===============================
+   Helper RGB variables for opacity
+================================ */
+:root {
+  --primary-rgb: 11, 11, 11;
+  --text-rgb: 255, 255, 255;
 }
