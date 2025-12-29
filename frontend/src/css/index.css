@@ -8,3 +8,12 @@
 .body {
     background: linear-gradient(135deg, #f5f7fa, #eaeef3);
 }
+
+:root {
+  --primary: #0B0B0B;        /* Black */
+  --secondary: #FFFFFF;      /* White */
+  --accent1: #E10600;        /* Electric Red */
+  --accent2: #1AFF00;        /* Neon Green */
+  --neutral: #A1A1A1;        /* Cool Gray */
+  --text: #FFFFFF;            /* Main text */
+}
