@@ -6,6 +6,7 @@ import Home from "../pages/home";
 import About from "../pages/about";
 import Contact from "../pages/contact";
 import Shop from "../pages/shop";
+import Categories from "../pages/categories";
 
 import "../css/App.css";
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/category" element={<Categories />} />
       </Routes>
       <Footer />
     </Router>
