@@ -160,15 +160,15 @@ const Shop = () => {
 
     //filter by category
     if (filters.categories.length > 0) {
-        result = result.filter(product => 
-            filters.categories.includes(product.category) 
+        result = result.filter(product =>
+            filters.categories.includes(product.category)
         );
     }
 
     //filer by price range
-    result = result.filter(product => 
+    result = result.filter(product =>
         product.price >= filters.priceRange[0] &&
-        product.price <= filters.priceRange[1] 
+        product.price <= filters.priceRange[1]
     );
 
     //filter by brand
@@ -180,7 +180,7 @@ const Shop = () => {
 
     //filter by minimum rating
     result = result.filter(product =>
-        product.rating >= filters.minRating 
+        product.rating >= filters.minRating
     );
 
     //filter by search query
@@ -251,7 +251,7 @@ const Shop = () => {
 
       {/* Main Shop Content */}
       <div className="shop-content">
-        <div className="container">
+        <div className="shop-container">
           <div className="shop-layout">
             {/* Filter Sidebar */}
             <FilterSidebar
@@ -266,14 +266,14 @@ const Shop = () => {
               {/* Toolbar */}
               <div className="products-toolbar">
                 <div className="toolbar-left">
-                  <button 
+                  <button
                     className="btn-filter-mobile"
                     onClick={() => setShowFilters(!showFilters)}
                   >
                     <i className="fi fi-br-filter"></i>
                     Filters
                   </button>
-                  
+
                   <div className="search-box">
                     <i className="fi fi-br-search"></i>
                     <input
@@ -286,7 +286,7 @@ const Shop = () => {
                 </div>
 
                 <div className="toolbar-right">
-                  <select 
+                  <select
                     className="sort-select"
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
@@ -331,7 +331,7 @@ const Shop = () => {
                   <i className="fi fi-br-box"></i>
                   <h3>No products found</h3>
                   <p>Try adjusting your filters or search query</p>
-                  <button 
+                  <button
                     className="btn-reset"
                     onClick={() => {
                       setFilters({

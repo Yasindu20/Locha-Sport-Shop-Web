@@ -7,6 +7,12 @@
   min-height: 100vh;
 }
 
+.shop-container {
+  max-width: 1920px;
+  width: 90%;
+  margin: 0 auto;
+}
+
 /* ============================================
    BREADCRUMBS
    ============================================ */
