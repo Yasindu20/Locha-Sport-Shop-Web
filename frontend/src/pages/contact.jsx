@@ -4,12 +4,16 @@ import "../css/contact.css";
 const Contact = () => {
   return (
     <div className="contact-page">
+      {/* Header */}
       <header className="contact-header">
         <h1>Contact Us</h1>
         <p>Sports World – Havelock Town</p>
       </header>
+
+      {/* Main Content */}
       <div className="contact-container">
-        <div className="infoBox">
+        {/* Info Box */}
+        <div className="contact-infoBox">
           <h2>Store Information</h2>
 
           <p>
@@ -48,16 +52,17 @@ const Contact = () => {
             href="https://wa.me/94777807806"
             target="_blank"
             rel="noopener noreferrer"
-            className="whatsapp"
+            className="contact-whatsapp"
           >
             Chat on WhatsApp
           </a>
         </div>
 
         {/* Contact Form */}
-        <div className="formBox">
+        <div className="contact-formBox">
           <h2>Send Us a Message</h2>
-          <form className="form">
+
+          <form className="contact-form">
             <input type="text" placeholder="Full Name" required />
             <input type="email" placeholder="Email Address" required />
             <input type="text" placeholder="Phone Number (optional)" />
@@ -65,25 +70,24 @@ const Contact = () => {
             <textarea placeholder="Your Message" rows="5" required />
             <button type="submit">Send Message</button>
           </form>
+
           <small>We usually respond within 24 hours.</small>
         </div>
       </div>
+
       {/* Map */}
-      <div className="mapBox">
+      <div className="contact-mapBox">
         <iframe
           title="Sports World Havelock Town"
           src="https://www.google.com/maps?q=Sports+World+Havelock+Road+Colombo&output=embed"
-          width="100%"
-          height="300"
-          style={{ border: 0 }}
           loading="lazy"
         ></iframe>
       </div>
-      {/* Footer */}{" "}
+
+      {/* Footer */}
       <footer className="contact-footer">
-        {" "}
-        <p>Your information is safe with us and will not be shared.</p>{" "}
-        <p>© {new Date().getFullYear()} Sports World – Havelock Town</p>{" "}
+        <p>Your information is safe with us and will not be shared.</p>
+        <p>© {new Date().getFullYear()} Sports World – Havelock Town</p>
       </footer>
     </div>
   );
