@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../css/navbar.css";
 import Logo from "../assets/logo.svg";
 
@@ -31,7 +32,7 @@ const Navbar = () => {
           <nav className="nav-links">
             <a href="/">Home</a>
             <a href="/shop">Shop</a>
-            <a href="#">Categories</a>
+            <a href="/category">Categories</a>
             <a href="#">Deals</a>
             <a href="/contact">Contact</a>
             <a href="/about">About</a>
