@@ -268,7 +268,7 @@
 }
 
 /* ============================================
-   PRICE RANGE FILTER
+   PRICE RANGE FILTER - UPDATED
    ============================================ */
 
 .price-range-container {
@@ -279,7 +279,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-size: 16px;
   font-weight: 700;
   color: #1a1a2e;
@@ -290,62 +290,98 @@
   font-weight: 400;
 }
 
-/* Dual Range Slider */
+/* ============================================
+   DUAL RANGE SLIDER - COMPLETELY REWRITTEN
+   ============================================ */
+
 .dual-range-slider {
   position: relative;
-  height: 40px;
-  margin-bottom: 20px;
+  height: 6px;
+  margin-bottom: 30px;
 }
 
+/* Background track (gray) */
+.slider-track {
+  position: absolute;
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  top: 0;
+}
+
+/* Active range (orange) - This is the magic part! */
+.slider-range {
+  position: absolute;
+  height: 6px;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  border-radius: 3px;
+  top: 0;
+  /* Width and left position set dynamically by JavaScript */
+}
+
+/* Hide default slider appearance */
 .slider {
   position: absolute;
   width: 100%;
   height: 6px;
-  border-radius: 3px;
-  background: #e0e0e0;
+  background: transparent; /* Changed from solid color */
   outline: none;
   appearance: none;
+  -webkit-appearance: none;
   pointer-events: none;
+  top: 0;
 }
 
-/* Slider thumb */
+/* Make the thumb interactive */
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: #ff6b35;
   cursor: pointer;
-  pointer-events: all;
+  pointer-events: all; /* Only thumb is clickable */
   box-shadow: 0 2px 6px rgba(255, 107, 53, 0.4);
   transition: all 0.3s ease;
+  border: 3px solid white; /* White border makes it look nicer */
 }
 
 .slider::-webkit-slider-thumb:hover {
   transform: scale(1.2);
-  box-shadow: 0 3px 8px rgba(255, 107, 53, 0.6);
+  box-shadow: 0 3px 10px rgba(255, 107, 53, 0.6);
 }
 
+.slider::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.8);
+}
+
+/* Firefox thumb styles */
 .slider::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: #ff6b35;
   cursor: pointer;
   pointer-events: all;
-  border: none;
+  border: 3px solid white;
   box-shadow: 0 2px 6px rgba(255, 107, 53, 0.4);
 }
 
-/* Track colors for filled range */
+.slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 3px 10px rgba(255, 107, 53, 0.6);
+}
+
+/* Z-index layering - important for overlapping */
 .slider-min {
-  z-index: 1;
+  z-index: 3; /* Min slider on top when dragging left */
 }
 
 .slider-max {
-  z-index: 2;
-  background: linear-gradient(to right, #ff6b35 0%, #ff6b35 50%, #e0e0e0 50%, #e0e0e0 100%);
+  z-index: 4; /* Max slider on top when dragging right */
 }
 
 /* Quick Price Select */

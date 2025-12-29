@@ -35,24 +35,38 @@ const FilterSidebar = ({ filters, setFilters, showFilters, setShowFilters }) => 
   const [priceRange, setPriceRange] = useState(filters.priceRange);
 
   // ========================================
+  // CONSTANTS FOR PRICE SLIDER
+  // ========================================
+  const MIN_PRICE = 0;
+  const MAX_PRICE = 500;
+
+  // ========================================
+  // CALCULATE PERCENTAGE FOR VISUAL TRACK
+  // ========================================
+  /**
+   * Converts price value to percentage for CSS positioning
+   * Formula: (value / maxValue) * 100
+   */
+  const getPercentage = (value) => {
+    return ((value - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100;
+  };
+
+  // Calculate percentages for both sliders
+  const minPercent = getPercentage(priceRange[0]);
+  const maxPercent = getPercentage(priceRange[1]);
+
+  // ========================================
   // FILTER HANDLERS
   // ========================================
   
-  /**
-   * Handles category checkbox changes
-   * Adds or removes category from filters array
-   */
   const handleCategoryChange = (category) => {
     const newCategories = filters.categories.includes(category)
-      ? filters.categories.filter(c => c !== category) // Remove if exists
-      : [...filters.categories, category]; // Add if doesn't exist
+      ? filters.categories.filter(c => c !== category)
+      : [...filters.categories, category];
     
     setFilters({ ...filters, categories: newCategories });
   };
 
-  /**
-   * Handles brand checkbox changes
-   */
   const handleBrandChange = (brand) => {
     const newBrands = filters.brands.includes(brand)
       ? filters.brands.filter(b => b !== brand)
@@ -61,33 +75,33 @@ const FilterSidebar = ({ filters, setFilters, showFilters, setShowFilters }) => 
     setFilters({ ...filters, brands: newBrands });
   };
 
-  /**
-   * Handles rating filter change
-   */
   const handleRatingChange = (rating) => {
     setFilters({ ...filters, minRating: rating });
   };
 
   /**
    * Handles price range change from slider
-   * Uses local state for smooth sliding, updates parent on release
+   * Prevents min from exceeding max and vice versa
    */
   const handlePriceChange = (e, index) => {
+    const newValue = parseInt(e.target.value);
     const newRange = [...priceRange];
-    newRange[index] = parseInt(e.target.value);
+    
+    if (index === 0) {
+      // Min slider - don't let it exceed max
+      newRange[0] = Math.min(newValue, priceRange[1]);
+    } else {
+      // Max slider - don't let it go below min
+      newRange[1] = Math.max(newValue, priceRange[0]);
+    }
+    
     setPriceRange(newRange);
   };
 
-  /**
-   * Updates parent filter state when user releases slider
-   */
   const handlePriceRelease = () => {
     setFilters({ ...filters, priceRange: priceRange });
   };
 
-  /**
-   * Resets all filters to default
-   */
   const handleResetFilters = () => {
     setFilters({
       categories: [],
@@ -150,7 +164,7 @@ const FilterSidebar = ({ filters, setFilters, showFilters, setShowFilters }) => 
           </div>
         </div>
 
-        {/* Price Range Filter */}
+        {/* Price Range Filter - UPDATED SECTION */}
         <div className="filter-group">
           <h4 className="filter-title">Price Range</h4>
           <div className="price-range-container">
@@ -161,22 +175,34 @@ const FilterSidebar = ({ filters, setFilters, showFilters, setShowFilters }) => 
             </div>
             
             <div className="dual-range-slider">
+              {/* Visual track that shows the selected range */}
+              <div className="slider-track">
+                <div 
+                  className="slider-range"
+                  style={{
+                    left: `${minPercent}%`,
+                    width: `${maxPercent - minPercent}%`
+                  }}
+                />
+              </div>
+
               {/* Min Price Slider */}
               <input
                 type="range"
-                min="0"
-                max="500"
+                min={MIN_PRICE}
+                max={MAX_PRICE}
                 value={priceRange[0]}
                 onChange={(e) => handlePriceChange(e, 0)}
                 onMouseUp={handlePriceRelease}
                 onTouchEnd={handlePriceRelease}
                 className="slider slider-min"
               />
+              
               {/* Max Price Slider */}
               <input
                 type="range"
-                min="0"
-                max="500"
+                min={MIN_PRICE}
+                max={MAX_PRICE}
                 value={priceRange[1]}
                 onChange={(e) => handlePriceChange(e, 1)}
                 onMouseUp={handlePriceRelease}
