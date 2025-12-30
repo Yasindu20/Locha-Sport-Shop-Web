@@ -21,7 +21,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/category" element={<Categories />} />
-        <Route path="/category/:slug" element="{<CategoryPage />}" />
+        <Route path="/category/:slug" element={<CategoryPage />} />
       </Routes>
       <Footer />
     </Router>
