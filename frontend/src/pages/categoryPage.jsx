@@ -292,15 +292,6 @@ const CategoryPage = () => {
         <div className="category-hero-overlay"></div>
         <div className="category-hero-content">
           <div className="container">
-            {/* Breadcrumbs */}
-            <div className="breadcrumbs">
-              <Link to="/">Home</Link>
-              <span className="separator">/</span>
-              <Link to="/category">Categories</Link>
-              <span className="separator">/</span>
-              <span className="current">{currentCategory.name}</span>
-            </div>
-
             {/* Category Header */}
             <div className="category-header">
               <span className="category-icon">{currentCategory.icon}</span>
