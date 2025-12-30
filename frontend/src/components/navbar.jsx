@@ -23,7 +23,7 @@ const Navbar = () => {
     <>
       <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <div className="logo">
-          <a href="#">
+          <a href="/">
             <img src={Logo} alt="Logo" />
           </a>
         </div>
