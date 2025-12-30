@@ -39,33 +39,6 @@
   padding: 40px 0;
 }
 
-/* Breadcrumbs */
-.category-page .breadcrumbs {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  margin-bottom: 30px;
-}
-
-.category-page .breadcrumbs a {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-}
-
-.category-page .breadcrumbs a:hover {
-  color: #fff;
-}
-
-.category-page .breadcrumbs .separator {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.category-page .breadcrumbs .current {
-  color: #fff;
-  font-weight: 600;
-}
-
 /* Category Header */
 .category-header {
   text-align: center;

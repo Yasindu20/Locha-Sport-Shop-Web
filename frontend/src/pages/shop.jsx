@@ -232,15 +232,6 @@ const Shop = () => {
   // ========================================
   return (
     <div className="shop-page">
-      {/* Breadcrumbs */}
-      <div className="breadcrumbs">
-        <div className="container">
-          <a href="/">Home</a>
-          <span className="separator">/</span>
-          <span className="current">Shop</span>
-        </div>
-      </div>
-
       {/* Page Header */}
       <div className="shop-header">
         <div className="container">
