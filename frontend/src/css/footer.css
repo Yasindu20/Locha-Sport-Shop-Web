@@ -62,11 +62,13 @@
   color: var(--text);
   font-size: 18px;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .social-links a:hover {
   background: var(--accent1);
   transform: translateY(-3px);
+  text-decoration: none;
 }
 
 /* ============================================
@@ -189,6 +191,60 @@
   font-size: 24px;
   color: rgba(var(--neutral-rgb), 0.7);
 }
+
+/* ============================================
+   CONTACT INFO STYLING (Get In Touch)
+   ============================================ */
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(var(--neutral-rgb), 0.05);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+/* Icon styling */
+.contact-icon {
+  font-size: 18px;
+  color: var(--accent1);
+  min-width: 20px;
+}
+
+/* Text styling */
+.contact-link span {
+  color: rgba(var(--neutral-rgb), 0.8);
+  font-size: 15px;
+}
+
+/* Hover effect */
+.contact-link:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent1-rgb), 0.15),
+    rgba(var(--accent1-rgb), 0.05)
+  );
+  transform: translateX(5px);
+}
+
+.contact-link:hover span {
+  color: var(--text);
+}
+
+.contact-link:hover .contact-icon {
+  color: var(--accent2);
+}
+
+/* Mobile centering */
+@media (max-width: 768px) {
+  .contact-link {
+    justify-content: center;
+  }
+}
+
 
 /* ============================================
    RESPONSIVE DESIGN

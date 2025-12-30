@@ -51,7 +51,11 @@ const Navbar = () => {
             onClick={toggleMenu}
             aria-label="Menu"
           >
-            <i className="fi fi-br-menu-burger"></i>
+            {menuOpen ? (
+              <i className="fi fi-br-cross-small"></i>
+            ) : (
+              <i className="fi fi-br-menu-burger"></i>
+            )}
           </button>
         </div>
       </header>
@@ -69,24 +73,27 @@ const Navbar = () => {
             onClick={toggleMenu}
             aria-label="Close menu"
           >
-            <i className="fi fi-br-cross"></i>
+            <i className="fi fi-br-cross-small"></i>
           </button>
         </div>
 
-        <a href="#" onClick={toggleMenu}>
+        <a href="/" onClick={toggleMenu}>
           <i className="fi fi-br-home"></i> Home
         </a>
-        <a href="#" onClick={toggleMenu}>
+        <a href="/shop" onClick={toggleMenu}>
           <i className="fi fi-br-shopping-bag"></i> Shop
         </a>
-        <a href="#" onClick={toggleMenu}>
+        <a href="/catrgory" onClick={toggleMenu}>
           <i className="fi fi-br-apps"></i> Categories
         </a>
         <a href="#" onClick={toggleMenu}>
           <i className="fi fi-br-badge-percent"></i> Deals
         </a>
-        <a href="#" onClick={toggleMenu}>
+        <a href="/contact" onClick={toggleMenu}>
           <i className="fi fi-br-envelope"></i> Contact
+        </a>
+        <a href="/about" onClick={toggleMenu}>
+          <i className="fi fi-br-info"></i> About
         </a>
 
         <div className="mobile-search">
