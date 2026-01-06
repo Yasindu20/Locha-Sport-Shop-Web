@@ -72,42 +72,6 @@
 }
 
 /* ============================================
-   SCROLL ARROWS (DESKTOP)
-   ============================================ */
-
-.scroll-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: none;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  font-size: 26px;
-  cursor: pointer;
-  z-index: 300;
-  display: none;
-}
-
-.scroll-arrow.left {
-  left: 10px;
-}
-
-.scroll-arrow.right {
-  right: 10px;
-}
-
-@media (min-width: 768px) {
-  .scroll-arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-/* ============================================
    GRADIENT EDGE FADES
    ============================================ */
 

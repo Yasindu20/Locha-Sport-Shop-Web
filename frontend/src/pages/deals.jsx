@@ -58,16 +58,6 @@ const Deals = () => {
   };
 
   // ========================================
-  // ARROW SCROLL
-  // ========================================
-  const scrollByAmount = (amount) => {
-    categoryScrollRef.current?.scrollBy({
-      left: amount,
-      behavior: "smooth",
-    });
-  };
-
-  // ========================================
   // MOCK DEALS
   // ========================================
   useEffect(() => {
@@ -126,21 +116,6 @@ const Deals = () => {
           isScrolling ? "scrolling" : ""
         }`}
       >
-        {/* LEFT ARROW */}
-        <button
-          className="scroll-arrow left"
-          onClick={() => scrollByAmount(-250)}
-        >
-          ‹
-        </button>
-
-        {/* RIGHT ARROW */}
-        <button
-          className="scroll-arrow right"
-          onClick={() => scrollByAmount(250)}
-        >
-          ›
-        </button>
 
         {/* GRADIENT FADES */}
         <div className="fade fade-left" />
