@@ -1,94 +1,215 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/contact.css";
 
 const Contact = () => {
+  const [contactPageFormData, setContactPageFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "orders",
+    message: "",
+  });
+
+  const [contactPageErrors, setContactPageErrors] = useState({});
+  const [contactPageSubmitted, setContactPageSubmitted] = useState(false);
+  const [contactPageLoading, setContactPageLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setContactPageFormData({
+      ...contactPageFormData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const validate = () => {
+    let errors = {};
+
+    if (!contactPageFormData.name.trim()) errors.name = "Name is required";
+
+    if (!contactPageFormData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(contactPageFormData.email)) {
+      errors.email = "Enter a valid email";
+    }
+
+    if (!contactPageFormData.message.trim())
+      errors.message = "Message is required";
+
+    return errors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+
+    if (Object.keys(validationErrors).length > 0) {
+      setContactPageErrors(validationErrors);
+      return;
+    }
+
+    setContactPageErrors({});
+    setContactPageLoading(true);
+
+    setTimeout(() => {
+      setContactPageLoading(false);
+      setContactPageSubmitted(true);
+      setContactPageFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "orders",
+        message: "",
+      });
+    }, 1500);
+  };
+
   return (
-    <div className="contact-page">
-      {/* Header */}
-      <header className="contact-header">
+    <div className="contact-page-wrapper">
+      {/* Hero */}
+      <div className="contact-page-hero">
         <h1>Contact Us</h1>
-        <p>Sports World – Havelock Town</p>
-      </header>
+        <p>We’re here to help with all your sports needs</p>
+      </div>
 
-      {/* Main Content */}
-      <div className="contact-container">
-        {/* Info Box */}
-        <div className="contact-infoBox">
-          <h2>Store Information</h2>
-
-          <p>
-            <strong>Address:</strong>
-            <br />
-            153 Havelock Road,
-            <br />
-            Colombo 00500,
-            <br />
-            Sri Lanka
-          </p>
-
-          <p>
-            <strong>Phone:</strong>
-            <br />
-            <a href="tel:0777807806">077 780 7806</a>
-            <br />
-            <a href="tel:0112503093">011 250 3093</a>
-          </p>
-
-          <p>
-            <strong>Email:</strong>
-            <br />
-            <a href="mailto:info@sportsworld.lk">info@sportsworld.lk</a>
-          </p>
-
-          <p>
-            <strong>Opening Hours:</strong>
-            <br />
-            Monday – Sunday
-            <br />
-            9:00 AM – 7:00 PM
-          </p>
-
-          <a
-            href="https://wa.me/94777807806"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-whatsapp"
-          >
-            Chat on WhatsApp
-          </a>
-        </div>
-
-        {/* Contact Form */}
-        <div className="contact-formBox">
+      <div className="contact-page-container">
+        {/* Form */}
+        <div className="contact-page-form">
           <h2>Send Us a Message</h2>
 
-          <form className="contact-form">
-            <input type="text" placeholder="Full Name" required />
-            <input type="email" placeholder="Email Address" required />
-            <input type="text" placeholder="Phone Number (optional)" />
-            <input type="text" placeholder="Subject" />
-            <textarea placeholder="Your Message" rows="5" required />
-            <button type="submit">Send Message</button>
-          </form>
+          {contactPageSubmitted && (
+            <div className="contact-page-success">
+              ✅ Your message has been sent successfully!
+            </div>
+          )}
 
-          <small>We usually respond within 24 hours.</small>
+          <form onSubmit={handleSubmit} noValidate>
+            <div className="contact-page-form-group">
+              <label>Full Name *</label>
+              <input
+                type="text"
+                name="name"
+                value={contactPageFormData.name}
+                onChange={handleChange}
+              />
+              {contactPageErrors.name && (
+                <span className="contact-page-error">
+                  {contactPageErrors.name}
+                </span>
+              )}
+            </div>
+
+            <div className="contact-page-form-group">
+              <label>Email Address *</label>
+              <input
+                type="email"
+                name="email"
+                value={contactPageFormData.email}
+                onChange={handleChange}
+              />
+              {contactPageErrors.email && (
+                <span className="contact-page-error">
+                  {contactPageErrors.email}
+                </span>
+              )}
+            </div>
+
+            <div className="contact-page-form-group">
+              <label>Phone Number</label>
+              <input
+                type="tel"
+                name="phone"
+                value={contactPageFormData.phone}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="contact-page-form-group">
+              <label>Subject</label>
+              <select
+                name="subject"
+                value={contactPageFormData.subject}
+                onChange={handleChange}
+              >
+                <option value="orders">Orders</option>
+                <option value="products">Products</option>
+                <option value="returns">Returns</option>
+                <option value="general">General Inquiry</option>
+              </select>
+            </div>
+
+            <div className="contact-page-form-group">
+              <label>Message *</label>
+              <textarea
+                rows="4"
+                name="message"
+                value={contactPageFormData.message}
+                onChange={handleChange}
+              />
+              {contactPageErrors.message && (
+                <span className="contact-page-error">
+                  {contactPageErrors.message}
+                </span>
+              )}
+            </div>
+
+            <button
+              className="contact-page-button"
+              type="submit"
+              disabled={contactPageLoading}
+            >
+              {contactPageLoading ? "Sending..." : "Send Message"}
+            </button>
+          </form>
+        </div>
+
+        {/* Info */}
+        <div className="contact-page-info">
+          <h2>Contact Information</h2>
+          <p>
+            <strong>
+              <i className="fi fi-sr-marker" />
+              Address:
+            </strong>{" "}
+            123 Sports Avenue, Colombo
+          </p>
+          <p>
+            <strong>
+              <i className="fi fi-br-phone-call" />
+              Phone:
+            </strong>{" "}
+            +94 77 123 4567
+          </p>
+          <p>
+            <strong>
+              <i className="fi fi-br-envelope" />
+              Email:
+            </strong>{" "}
+            support@sportshop.com
+          </p>
+          <p>
+            <strong>
+              <i className="fi fi-br-alarm-clock" />
+              Hours:
+            </strong>{" "}
+            Mon - Sat: 9 AM - 8 PM
+          </p>
+
+          <div className="contact-page-social">
+            <a href="#">
+              <i class="fi fi-brands-facebook" />
+              Facebook
+            </a>
+            <a href="#">
+              <i class="fi fi-brands-instagram" />
+              Instagram
+            </a>
+            <a href="#">
+              <i class="fi fi-brands-whatsapp" />
+              WhatsApp
+            </a>
+          </div>
         </div>
       </div>
-
-      {/* Map */}
-      <div className="contact-mapBox">
-        <iframe
-          title="Sports World Havelock Town"
-          src="https://www.google.com/maps?q=Sports+World+Havelock+Road+Colombo&output=embed"
-          loading="lazy"
-        ></iframe>
-      </div>
-
-      {/* Footer */}
-      <footer className="contact-footer">
-        <p>Your information is safe with us and will not be shared.</p>
-        <p>© {new Date().getFullYear()} Sports World – Havelock Town</p>
-      </footer>
     </div>
   );
 };

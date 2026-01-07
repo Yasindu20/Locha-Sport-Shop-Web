@@ -1,92 +1,135 @@
 import React from "react";
-import "../css/about.css";
+import "../css/About.css";
+
+// Import brand logos
+import logo1 from "../assets/brands/logo1.svg";
+import logo2 from "../assets/brands/logo2.svg";
+import logo3 from "../assets/brands/logo3.svg";
+import logo4 from "../assets/brands/logo4.svg";
+
+const brands = [logo1, logo2, logo3, logo4, logo1, logo2, logo3, logo4];
 
 const About = () => {
   return (
     <div className="about-container">
-      {/* Hero Section */}
+      {/* HERO */}
       <section className="about-hero">
-        <div className="about-overlay">
-          <h1>About Sports World</h1>
-          <p>Gear Up. Play Strong. Perform Better.</p>
-        </div>
+        <h1>Fuel Your Performance</h1>
+        <p>
+          Premium sportswear, footwear, and equipment from globally authorized
+          brands — built for champions.
+        </p>
       </section>
 
-      {/* About Content */}
+      {/* ABOUT */}
       <section className="about-content">
-        <h2>Sports World | Havelock Town</h2>
+        <h2>Who We Are</h2>
         <p>
-          Sports World is a leading sportswear and sports equipment store
-          located in Havelock Town, Colombo, dedicated to serving athletes,
-          fitness enthusiasts, and sports lovers across Sri Lanka.
-        </p>
-
-        <p>
-          We provide authentic, high-quality sports gear from internationally
-          recognized brands to support performance, comfort, and durability. As
-          an authorized distributor of global sports brands, we specialize in
-          badminton equipment, sports apparel, footwear, accessories, and
-          training gear.
-        </p>
-
-        <p>
-          Whether you are a beginner or a competitive athlete, our expert team
-          helps you find the right equipment to match your game. Trusted by
-          individuals, clubs, and schools, Sports World is committed to
-          delivering reliable sports solutions.
+          We are a trusted sports retail brand delivering high-performance gear
+          for athletes, fitness enthusiasts, and everyday champions. Every
+          product we sell is 100% authentic and sourced directly from authorized
+          distributors.
         </p>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="mission-vision">
-        <div className="card">
-          <h3>Our Mission</h3>
-          <p>
-            To deliver premium sports equipment and apparel with expert
-            guidance, helping every athlete perform at their best.
-          </p>
-        </div>
-
-        <div className="card">
-          <h3>Our Vision</h3>
-          <p>
-            To be Sri Lanka’s most trusted sports retail destination, promoting
-            active lifestyles and sporting excellence nationwide.
-          </p>
+      {/* BRANDS */}
+      <section className="brand-section">
+        <div className="brand-slider">
+          <div className="brand-track">
+            {brands.concat(brands).map((logo, i) => (
+              <div className="brand-logo" key={i}>
+                <img src={logo} alt="brand logo" />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="why-choose-us">
-        <h2>Why Choose Sports World</h2>
-        <ul>
-          <li>Authorized seller of genuine international sports brands</li>
-          <li>Wide range of sportswear, rackets, footwear, and accessories</li>
-          <li>Expert advice from sports-focused professionals</li>
-          <li>Trusted by athletes, clubs, and sports communities</li>
-          <li>Conveniently located in Havelock Town, Colombo</li>
-        </ul>
+      {/* WHY US */}
+      <section className="why-us">
+        <h2>Why Choose Us</h2>
+        <div className="why-grid">
+          <div className="why-card">
+            <i className="fi fi-br-shield-trust" />
+            <p>100% Authorized Products</p>
+          </div>
+          <div className="why-card">
+            <i className="fi fi-br-user-fast-running" />
+            <p>Fast & Secure Delivery</p>
+          </div>
+          <div className="why-card">
+            <i className="fi fi-br-trust-alt" />
+            <p>Trusted Sports Experts</p>
+          </div>
+          <div className="why-card">
+            <i className="fi fi-br-user-headset" />
+            <p>Dedicated Customer Support</p>
+          </div>
+        </div>
       </section>
 
-      {/* Visit Section */}
-      <section className="visit-us">
-        <h2>Visit Sports World Today</h2>
-        <p>
-          Discover world-class sports gear, expert recommendations, and
-          exceptional service — all under one roof.
-        </p>
+      {/* LOCATION */}
+      <section className="location-section">
+        <div className="location-wrapper">
+          <div className="location-header">
+            <h2>Visit Our Store</h2>
+            <p>
+              Experience premium sports gear in-store and get expert guidance
+              from our team.
+            </p>
+          </div>
 
-        <div className="visit-details">
-          <span>
-            <i class="fi fi-sr-marker" /> Havelock Town, Colombo
-          </span>
-          <span>
-            <i class="fi fi-sr-shuttlecock" /> Badminton & Sports Equipment
-          </span>
-          <span>
-            <i class="fi fi-sr-soccer-boots"/> Sportswear, Footwear &
-            Accessories
-          </span>
+          <div className="location-card">
+            <div className="location-details">
+              <div className="detail-item">
+                <span>
+                  <i className="fi fi-sr-marker" />
+                </span>
+                <div>
+                  <h4>Address</h4>
+                  <p>123 Sports Avenue, Colombo</p>
+                </div>
+              </div>
+
+              <div className="detail-item">
+                <span>
+                  <i className="fi fi-br-phone-call" />
+                </span>
+                <div>
+                  <h4>Phone</h4>
+                  <p>+94 77 123 4567</p>
+                </div>
+              </div>
+
+              <div className="detail-item">
+                <span>
+                  <i className="fi fi-br-envelope" />
+                </span>
+                <div>
+                  <h4>Email</h4>
+                  <p>support@sportshop.com</p>
+                </div>
+              </div>
+
+              <div className="detail-item">
+                <span>
+                  <i className="fi fi-br-alarm-clock" />
+                </span>
+                <div>
+                  <h4>Business Hours</h4>
+                  <p>Mon – Sat | 9:00 AM – 8:00 PM</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="map-box">
+              <iframe
+                title="Sports World Havelock Town"
+                src="https://www.google.com/maps?q=Sports+World+Havelock+Road+Colombo&output=embed"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
         </div>
       </section>
     </div>
