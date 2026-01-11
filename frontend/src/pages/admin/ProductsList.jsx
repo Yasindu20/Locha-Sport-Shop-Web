@@ -15,7 +15,7 @@ const ProductList = () => {
       const data = await response.json();
       setProducts(data);
     } catch (error) {
-      console.error("Error fetching Products: ", error);
+      console.error("Error fetching products: ", error);
     } finally {
       setLoading(false);
     }
@@ -25,14 +25,14 @@ const ProductList = () => {
     fetchProducts();
   }, []);
 
-  // Delete products
+  // Delete product
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem("adminToken");
-      const response = await fetch("http://localhost:5000/api/products/${id}", {
+      const response = await fetch(`http://localhost:5000/api/products/${id}`, {
         method: "DELETE",
         headers: {
-          Authorizations: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -41,7 +41,7 @@ const ProductList = () => {
         setDeleteConfirm(null);
       }
     } catch (error) {
-      console.error("Error Deleting products: ", error);
+      console.error("Error deleting product: ", error);
     }
   };
 
@@ -50,21 +50,21 @@ const ProductList = () => {
     try {
       const token = localStorage.getItem("adminToken");
       const response = await fetch(
-        "http://localhost:5000/api/products/${id}/featured",
+        `http://localhost:5000/api/products/${id}/featured`,
         {
           method: "PATCH",
-          Authorizations: {
-            header: `Bearer ${token}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
       if (response.ok) {
         const data = await response.json();
-        setProducts(products.map((p) => (p._id === id ? data.products : p)));
+        setProducts(products.map((p) => (p._id === id ? data.product : p)));
       }
     } catch (error) {
-      console.error("Error toggle featured: ", error);
+      console.error("Error toggling featured: ", error);
     }
   };
 
@@ -81,26 +81,25 @@ const ProductList = () => {
     return matchesSearch && matchesCategory;
   });
 
-  // Get Unique Categories
   const categories = ["all", ...new Set(products.map((p) => p.category))];
 
   return (
     <div className="admin-products-list">
       {/* Page Header */}
-      <div className="products-header">
+      <div className="admin-products-list-header">
         <div>
           <h1>Products Management</h1>
           <p>Manage your product catalog</p>
         </div>
-        <Link to="/adin/products/add" className="btn-primary">
+        <Link to="/admin/products/add" className="admin-products-list-btn-primary">
           <i className="fi fi-sr-add"></i>
           Add New Product
         </Link>
       </div>
 
       {/* Filters */}
-      <div className="products-filters">
-        <div className="search-box">
+      <div className="admin-products-list-filters">
+        <div className="admin-products-list-search-box">
           <i className="fi fi-sr-search"></i>
           <input
             type="text"
@@ -110,36 +109,36 @@ const ProductList = () => {
           />
         </div>
         <select
-          className="filter-select"
+          className="admin-products-list-filter-select"
           value={filterCategory}
           onChange={(e) => setFilterCategory(e.target.value)}
         >
           {categories.map((cat) => (
             <option key={cat} value={cat}>
-              {cat === "cat" ? "All Categories" : cat}
+              {cat === "all" ? "All Categories" : cat}
             </option>
           ))}
         </select>
-        <div className="results-count">
+        <div className="admin-products-list-results-count">
           Showing {filteredProducts.length} of {products.length} products
         </div>
       </div>
 
       {/* Products Table */}
       {loading ? (
-        <div className="loading-state">
+        <div className="admin-products-list-empty-state">
           <div className="spinner"></div>
           <p>Loading products...</p>
         </div>
       ) : filteredProducts.length === 0 ? (
-        <div className="empty-state">
+        <div className="admin-products-list-empty-state">
           <i className="fi fi-sr-box"></i>
           <h3>No products found</h3>
           <p>Try adjusting your search or filters</p>
         </div>
       ) : (
-        <div className="products-table-container">
-          <table className="products-table">
+        <div className="admin-products-list-table-container">
+          <table className="admin-products-list-table">
             <thead>
               <tr>
                 <th>Product</th>
@@ -153,36 +152,31 @@ const ProductList = () => {
             <tbody>
               {filteredProducts.map((product) => (
                 <tr key={product._id}>
-                  {/* Product Info */}
-                  <td className="product-cell">
-                    <div className="product-info">
-                      <div className="product-image">
+                  <td className="admin-products-list-product-cell">
+                    <div className="admin-products-list-product-info">
+                      <div className="admin-products-list-product-image">
                         <img
                           src={`http://localhost:5000${product.image}`}
                           alt={product.name}
                         />
                       </div>
-                      <div className="product-details">
+                      <div className="admin-products-list-product-details">
                         <h4>{product.name}</h4>
                         <p>{product.brand}</p>
                       </div>
                     </div>
                   </td>
-
-                  {/* Category */}
                   <td>
-                    <span className="badge badge-category">
+                    <span className="admin-products-list-badge admin-products-list-badge-category">
                       {product.category}
                     </span>
                   </td>
-
-                  {/* Price */}
-                  <td className="price-cell">${product.price.toFixed(2)}</td>
-
-                  {/* Stock */}
+                  <td className="admin-products-list-price-cell">
+                    ${product.price.toFixed(2)}
+                  </td>
                   <td>
                     <span
-                      className={`stock-badge ${
+                      className={`admin-products-list-stock-badge ${
                         product.stock === 0
                           ? "out-of-stock"
                           : product.stock < 10
@@ -197,11 +191,9 @@ const ProductList = () => {
                         : `${product.stock} units`}
                     </span>
                   </td>
-
-                  {/* Featured Status */}
                   <td>
                     <button
-                      className={`btn-featured ${
+                      className={`admin-products-list-btn-featured ${
                         product.isFeatured ? "active" : ""
                       }`}
                       onClick={() => toggleFeatured(product._id)}
@@ -214,19 +206,17 @@ const ProductList = () => {
                       <i className="fi fi-sr-star"></i>
                     </button>
                   </td>
-
-                  {/* Actions */}
-                  <td className="actions-cell">
-                    <div className="action-buttons">
+                  <td className="admin-products-list-actions-cell">
+                    <div className="admin-products-list-action-buttons">
                       <Link
                         to={`/admin/products/edit/${product._id}`}
-                        className="btn-action btn-edit"
+                        className="admin-products-list-btn-action admin-products-list-btn-edit"
                         title="Edit"
                       >
                         <i className="fi fi-sr-edit"></i>
                       </Link>
                       <button
-                        className="btn-action btn-delete"
+                        className="admin-products-list-btn-action admin-products-list-btn-delete"
                         onClick={() => setDeleteConfirm(product._id)}
                         title="Delete"
                       >
@@ -243,32 +233,32 @@ const ProductList = () => {
 
       {/* Delete Confirmation Modal */}
       {deleteConfirm && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <div className="modal-header">
+        <div className="admin-products-list-modal-overlay">
+          <div className="admin-products-list-modal-content">
+            <div className="admin-products-list-modal-header">
               <h3>Confirm Delete</h3>
               <button
-                className="modal-close"
+                className="admin-products-list-modal-close"
                 onClick={() => setDeleteConfirm(null)}
               >
                 <i className="fi fi-br-cross"></i>
               </button>
             </div>
-            <div className="modal-body">
+            <div className="admin-products-list-modal-body">
               <p>
                 Are you sure you want to delete this product? This action cannot
                 be undone.
               </p>
             </div>
-            <div className="modal-footer">
+            <div className="admin-products-list-modal-footer">
               <button
-                className="btn-secondary"
+                className="admin-products-list-btn-secondary"
                 onClick={() => setDeleteConfirm(null)}
               >
                 Cancel
               </button>
               <button
-                className="btn-danger"
+                className="admin-products-list-btn-danger"
                 onClick={() => handleDelete(deleteConfirm)}
               >
                 Delete Product

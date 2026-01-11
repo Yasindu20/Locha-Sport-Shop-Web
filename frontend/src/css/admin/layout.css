@@ -1,11 +1,12 @@
 /* ============================================
-   ADMIN LAYOUT
+   ADMIN LAYOUT (FIXED)
    ============================================ */
 
 .admin-layout {
   display: flex;
   min-height: 100vh;
   background: #f5f6fa;
+  overflow-x: hidden; /* ✅ prevents overlap & scroll */
 }
 
 /* ============================================
@@ -16,10 +17,13 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  transition: margin-left 0.3s ease;
   min-width: 0;
+  transition: margin-left 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
+/* Desktop only sidebar spacing */
 .admin-main.sidebar-open {
   margin-left: 280px;
 }
@@ -50,7 +54,12 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(
+    135deg,
+    #1a1a2e 0%,
+    #16213e 50%,
+    #0f3460 100%
+  );
   color: var(--text);
 }
 
@@ -76,17 +85,14 @@
 }
 
 /* ============================================
-   SIDEBAR OVERLAY (Mobile)
+   SIDEBAR OVERLAY (MOBILE ONLY)
    ============================================ */
 
 .sidebar-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 998; /* BELOW sidebar, ABOVE content */
   animation: fadeIn 0.3s ease;
 }
 
@@ -100,13 +106,13 @@
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   RESPONSIVE FIXES
    ============================================ */
 
 @media (max-width: 991px) {
   .admin-main.sidebar-open,
   .admin-main.sidebar-closed {
-    margin-left: 0;
+    margin-left: 0; /* ✅ mobile never shifts layout */
   }
 
   .admin-content {
