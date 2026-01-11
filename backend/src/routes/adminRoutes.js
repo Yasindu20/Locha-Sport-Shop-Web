@@ -1,6 +1,6 @@
 import express from 'express';
 import Admin from '../models/Admin.js';
-import { authenticateAdmin, requireSuperAdmin } from '../middleware/auth.js';
+import { authenticateAdmin, requireSuperAdmin, generateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ router.post('/register', authenticateAdmin, requireSuperAdmin, async (req, res) 
         const { username, email, password, fullName, role } = req.body;
 
         // check if admin already exists
-        const existingAdmin = Admin.findOne({
+        const existingAdmin = await Admin.findOne({
             $or: [{ email }, { username }]
         });
 
@@ -73,20 +73,12 @@ router.post('/login', async (req, res) => {
             });
         }
 
-        const isMatchUsername = await admin.compareUsername(username);
-
-        if (!isMatchUsername) {
-            return res.status(401).json({
-                message: 'Username is incorrect'
-            });
-        }
-
         // Compare passwords
         const isMatchPassword = await admin.comparePassword(password);
 
         if (!isMatchPassword) {
             return res.status(401).json({
-                message: 'Password is incorrect'
+                message: 'Invalid email or password'
             });
         }
 
@@ -96,6 +88,7 @@ router.post('/login', async (req, res) => {
         // Generate token
         const token = generateToken(admin._id);
 
+        // Return admin without password
         const adminResponse = admin.toObject();
         delete adminResponse.password;
 
