@@ -1,6 +1,6 @@
-import express from 'exporess';
+import express from 'express';
 import Admin from '../models/Admin.js';
-import { authenticateAdmin, requireSuperAdmin } from '../middleware/auth';
+import { authenticateAdmin, requireSuperAdmin } from '../middleware/auth.js';
 
 const router = express.Router();
 
