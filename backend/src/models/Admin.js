@@ -45,19 +45,16 @@ const adminSchema = new mongoose.Schema({
     timestamps: true
 });
 
-adminSchema.pre('save', async function(next) {
-    if(!this.isModified('password')) {
-        return next();
+adminSchema.pre('save', async function() {
+    // 1. If password isn't modified, just exit the function
+    if (!this.isModified('password')) {
+        return; 
     }
 
-    try {
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
-        next();
-    } catch (error) {
-        next(error);
-    }
-})
+    // If this fails, Mongoose will automatically catch the error
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+});
 
 adminSchema.methods.comparePassword = async function (candidatePassword) {
     try {

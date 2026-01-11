@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
 import Admin from '../models/Admin.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export const authenticateAdmin = async (req, res, next) => {
     try {
@@ -11,7 +14,7 @@ export const authenticateAdmin = async (req, res, next) => {
             });
         }
 
-        const decoded = jwt.verify(token, process.env.JWT_SECREET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         const admin = await Admin.findById(decoded.id).select('-password');
 
@@ -62,7 +65,7 @@ export const requireSuperAdmin = (req, res, next) => {
 export const generateToken = (adminId) => {
     return jwt.sign(
         { id: adminId },
-        process.env.JWT_SECREET,
+        process.env.JWT_SECRET,
         { expiresIn: process.env.JWT_EXPIRE || '7d' }
     );
 };
