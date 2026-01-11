@@ -237,7 +237,7 @@
 .product-card-list .product-badge {
   position: absolute;
   top: 15px;
-  left: 15px;
+  right: 20px;
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 11px;

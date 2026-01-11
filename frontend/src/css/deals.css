@@ -1,0 +1,103 @@
+/* ============================================
+   AMAZON-STYLE DEAL CATEGORY BAR
+   ============================================ */
+
+.deal-categories-section {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 200;
+  border-bottom: 1px solid #e5e5e5;
+  transition: box-shadow 0.25s ease;
+}
+
+.deal-categories-section.scrolling {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* CONTAINER */
+.deal-categories {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 14px 20px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.deal-categories::-webkit-scrollbar {
+  display: none;
+}
+
+/* SNAP */
+.snap-scroll {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-item {
+  scroll-snap-align: center;
+}
+
+/* BUTTON */
+.category-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: none;
+  background: #f4f5f7;
+  font-size: 15px;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.category-btn:hover {
+  background: #e9eaec;
+}
+
+.category-btn.active {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.35);
+}
+
+.category-icon {
+  font-size: 18px;
+}
+
+/* ============================================
+   GRADIENT EDGE FADES
+   ============================================ */
+
+.fade {
+  position: absolute;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 150;
+}
+
+.fade-left {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #fff 30%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.fade-right {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    #fff 30%,
+    rgba(255, 255, 255, 0)
+  );
+}

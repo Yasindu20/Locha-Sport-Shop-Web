@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"; 
-import '../../css/homepage/categories.css';
+import '../css/homepage/categories.css';
 
 const Categories = () => {
     const categories = [
@@ -9,7 +9,7 @@ const Categories = () => {
             icon: '⚽',
             count: 156,
             color: '#e63946',
-            slug: 'football'
+            slug: 'football' // Added slug for URL routing
         },
         {
             name: 'Basketball',
@@ -63,10 +63,27 @@ const Categories = () => {
                 {/* Categories Grid */}
                 <div className="categories-grid">
                     {categories.map((category) => (
+                        /**
+                         * Link Component Navigation
+                         * 
+                         * to={`/category/${category.slug}`} creates dynamic URL
+                         * Example: category.slug = "football"
+                         * Result: /category/football
+                         * 
+                         * Template Literals: `text ${variable} text`
+                         * - Use backticks ` instead of quotes
+                         * - ${} inserts JavaScript expressions
+                         */
                         <Link 
                             key={category.name}
                             to={`/category/${category.slug}`}
                             className="category-card"
+                            /**
+                             * CSS Variables (Custom Properties)
+                             * - Defined inline with style={{}}
+                             * - Accessed in CSS with var(--category-color)
+                             * - Allows dynamic styling per category
+                             */
                             style={{ '--category-color': category.color }}
                         >
                             <div className="category-icon">{category.icon}</div>
@@ -81,6 +98,7 @@ const Categories = () => {
 
                 {/* Call to Action Button */}
                 <div className="categories-cta">
+                    {/* Link to Shop page to view all products */}
                     <Link to="/shop" className="btn-view-all">
                         View All Categories
                         <i className="fi fi-br-arrow-right"></i>

@@ -7,40 +7,10 @@
   min-height: 100vh;
 }
 
-/* ============================================
-   BREADCRUMBS
-   ============================================ */
-
-.breadcrumbs {
-  background: #fff;
-  padding: 15px 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.breadcrumbs .container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-}
-
-.breadcrumbs a {
-  color: #666;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.breadcrumbs a:hover {
-  color: #ff6b35;
-}
-
-.breadcrumbs .separator {
-  color: #ccc;
-}
-
-.breadcrumbs .current {
-  color: #1a1a2e;
-  font-weight: 600;
+.shop-container {
+  max-width: 1920px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 /* ============================================

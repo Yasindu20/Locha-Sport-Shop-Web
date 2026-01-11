@@ -39,6 +39,18 @@ const productSchema = new mongoose.Schema({
         min: [0, 'Stock cannot be negative'],
         default: 0,
     },
+    colors: {
+        type: [String],
+        default: [],
+    },
+    outOfStockColors: {
+        type: [String],
+        default: [],
+    },
+    sizes: {
+        type: [String],
+        default: [],
+    },
     rating: {
         type: Number,
         default: 0,
