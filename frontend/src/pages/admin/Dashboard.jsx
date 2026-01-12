@@ -51,14 +51,14 @@ const Dashboard = () => {
     {
       title: "Out of Stock",
       value: stats?.outOfStock || 0,
-      icon: "fi fi-sr-exclamation-triangle",
+      icon: "fi fi-sr-triangle-warning",
       color: "#f44336",
       link: "/admin/products?stock=0",
     },
     {
       title: "Low Stock",
       value: stats?.lowStock || 0,
-      icon: "fi fi-sr-alert",
+      icon: "fi fi-sr-light-emergency-on",
       color: "#ff9800",
       link: "/admin/products?stock=low",
     },
